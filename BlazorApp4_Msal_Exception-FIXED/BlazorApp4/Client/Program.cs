@@ -23,10 +23,18 @@ namespace BlazorApp4.Client
 
             // Supply HttpClient instances that include access tokens when making requests to the server project
             builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BlazorApp4.ServerAPI"));
-            //builder.Services.AddMsalAuthentication(options =>
-            //{
-            //    options.ProviderOptions.AdditionalScopesToConsent.Add("https://graph.microsoft.com/User.Read");
-            //});
+
+            builder.Services.AddMsalAuthentication(options =>
+            {
+                //builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+                options.ProviderOptions.DefaultAccessTokenScopes.Add("https://graph.microsoft.com/User.Read");
+                
+                //var authentication = options.ProviderOptions.Authentication;
+                //authentication.Authority = "https://login.microsoftonline.com/xxx";
+                //authentication.ClientId = "xxx";
+                //options.ProviderOptions.DefaultAccessTokenScopes.Add("xxx/user_impersonation");
+            });
+
             builder.Services.AddApiAuthorization();
 
             await builder.Build().RunAsync();
