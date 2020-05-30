@@ -28,7 +28,12 @@ namespace BlazorApp4.Client
             {
                 //builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
                 options.ProviderOptions.DefaultAccessTokenScopes.Add("https://graph.microsoft.com/User.Read");
-                
+
+                //you can use AdditionalScopesToConsent also
+
+
+                //You can also configure Additional scopes like below 
+
                 //var authentication = options.ProviderOptions.Authentication;
                 //authentication.Authority = "https://login.microsoftonline.com/xxx";
                 //authentication.ClientId = "xxx";
